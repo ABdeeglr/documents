@@ -254,6 +254,56 @@ LIMIT 48, 40;
 
 
 
+## 06 数据分组
+
+使用 GROUP BY 关键字和 HAVING 关键字。
+
+示例：
+
+```sql
+SELECT COUNT(*) AS num_prods
+FROM products
+WHERE vend_id = 1003;
+
+SELECT vend_id, COUNT(*) AS num_prods
+FROM products
+GROUP BY vend_id;
+
+SELECT vend_id, COUNT(*) AS num_prods
+FROM products
+GROUP BY vend_id WITH ROLLUP;
+
+SELECT cust_id, COUNT(*) AS orders
+FROM orders
+GROUP BY cust_id
+HAVING COUNT(*) >= 2;
+
+SELECT vend_id, COUNT(*) AS num_prods
+FROM products
+WHERE prod_price >= 10
+GROUP BY vend_id
+HAVING COUNT(*) >= 2;
+
+
+```
+
+
+
+
+
+## A - SELECT 子句顺序
+
+SELECT 的字句必须遵循固定顺序，否则会报错。
+
+```sql
+SELECT ... -- 要返回的表达式或列
+FROM ... -- 选择数据的范围
+WHERE ... -- 行级过滤
+GROUP BY ... -- 分组说明（在计算聚集时使用）
+ORDER BY ... -- 输出排序顺序
+LIMIT ... -- 要检索的行数
+```
+
 
 
 
